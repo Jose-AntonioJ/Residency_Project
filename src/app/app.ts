@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class App {
   protected title = 'Front-End_Residency_Project';
+  
+
 }

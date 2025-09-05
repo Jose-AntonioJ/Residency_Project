@@ -1,0 +1,113 @@
+<div class="container">
+    <h1>ASPERSOR</h1>
+
+    <!--<button matButton="elevated" (click)="isLinear = !isLinear" id="toggle-linear">
+        {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+    </button>-->
+    <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Cordenadas</ng-template>
+                <div style="margin-top: 20px;">
+                    <mat-form-field>
+                        <mat-label>Eje inicial X</mat-label>
+                        <input matInput placeholder="Agrega el valor" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                    <mat-form-field style="margin-left: 100px; margin-top: -150px;">
+                        <mat-label>Eje final X</mat-label>
+                        <input matInput placeholder="Agrega el valor" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Eje inicial Y</mat-label>
+                        <input matInput placeholder="Agregar el valor" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                    <mat-form-field style="margin-left: 100px;">
+                        <mat-label>Eje final Y</mat-label>
+                        <input matInput placeholder="Agregar el valor" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Eje Z</mat-label>
+                        <input matInput placeholder="Ingresa el valor de altura" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button matButton matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Aspersión</ng-template>
+                <div style="margin-top: 20px; display: flex; align-items: center;">
+                    <mat-form-field>
+                        <mat-label>Flujo</mat-label>
+                        <mat-select>
+                            @for (flujo of flujos; track flujo) {
+                            <mat-option [value]="flujo.value">{{flujo.viewValue}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field style="margin-left: 100px;">
+                        <mat-label>Velocidad</mat-label>
+                        <mat-select>
+                            @for (velocidad of velocidades; track velocidad) {
+                            <mat-option [value]="velocidad.value">{{velocidad.viewValue}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!--<mat-form-field>
+                        <mat-label>Cobertura</mat-label>
+                        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                    </mat-form-field>-->
+
+                <div>
+                    <button matButton matStepperPrevious>Back</button>
+                    <button matButton matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="threeFormGroup">
+            <form [formGroup]="threeFormGroup">
+                <ng-template matStepLabel>Tiempo</ng-template>
+
+                <div>
+                    <mat-form-field >
+                        <mat-label>Tiempo de riego (minutos)</mat-label>
+                        <mat-select [value]="selecciondeMinutos">
+                            <mat-option *ngFor="let minuto of opciondeMinutos" [value]="minuto">
+                                {{minuto}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button mat-raised-button color="primary" (click)="startTimer()">Iniciar aspersión</button>
+                    <button mat-raised-button color="warn" (click)="stopTimer()">Detener</button>
+                </div>
+            </form>
+        </mat-step>
+
+    </mat-stepper>
+
+    <h2 *ngIf="tiempoRestante > 0">
+    ⏳ Tiempo restante: {{ tiempoRestante }}s
+  </h2>
+
+  <h2 *ngIf="tiempoRestante === 0 && tiempodeEjecucion">
+    ✅ ¡Aspersión iniciada!
+  </h2>
+
+
+    <app-cartesian-plane></app-cartesian-plane>
+
+    <!--<button [routerLink]="['/cartesian-plane']">Ir al plano</button>-->
+
+</div>

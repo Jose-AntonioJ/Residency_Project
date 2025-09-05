@@ -1,0 +1,15 @@
+
+<!--a (click)="navigation.back()" style="text-decoration: none;">
+    &#8592; Back
+</a>-->
+
+<h1>Creacion del Plano cartesiano</h1>
+
+<div style="height: 400px; width: 400px; margin: auto;">
+  <canvas baseChart
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [type]="lineChartType">
+  </canvas>
+</div>
+

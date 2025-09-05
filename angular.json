@@ -32,13 +32,11 @@
               }
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "server": "src/main.server.ts"
+            
           },
           "configurations": {
             "production": {
@@ -96,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "104b6250-b1d0-417f-9e31-94dfb5156a73"
   }
 }

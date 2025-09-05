@@ -1,0 +1,13 @@
+/* Estilo general (para pantallas grandes) */
+.container {
+  padding: 40px;
+  font-size: 20px;
+}
+
+/* Estilo para móviles (pantallas pequeñas) */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    font-size: 16px;
+  }
+}
