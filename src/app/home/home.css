@@ -1,35 +1,371 @@
-/* Estilo general (para pantallas grandes) */
+/* ===== VARIABLES DE COLOR Y TEMA ===== */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --background-light: #f8f9fa;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== ESTILOS GENERALES ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--background-light);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
 .container {
-  padding: 40px;
-  font-size: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
 }
 
-.label-X {
-  margin-left: 50px;
-  bottom: auto;
+/* ===== TÍTULO PRINCIPAL ===== */
+.container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
 }
 
-.example-form {
+/* ===== STEPPER PERSONALIZADO ===== */
+.mat-stepper-horizontal {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.mat-step-header {
+  padding: 20px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-bottom: 1px solid #e9ecef;
+  transition: var(--transition);
+}
+
+.mat-step-header:hover {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  transform: translateY(-2px);
+}
+
+.mat-step-header.cdk-keyboard-focused,
+.mat-step-header.cdk-program-focused,
+.mat-step-header .mat-step-header-ripple:hover {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.mat-step-icon {
+  background: var(--primary-gradient) !important;
+  color: white !important;
+  border-radius: 50%;
+  width: 40px !important;
+  height: 40px !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.mat-step-icon-selected {
+  background: var(--success-gradient) !important;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mat-step-label {
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  color: var(--text-primary) !important;
+}
+
+/* ===== FORMULARIOS Y CAMPOS ===== */
+.mat-form-field {
+  width: 100% !important;
+  margin-bottom: 20px !important;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.mat-form-field:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background: white !important;
+  border-radius: var(--border-radius) !important;
+  padding: 15px !important;
+}
+
+.mat-form-field-label {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+}
+
+.mat-input-element {
+  color: var(--text-primary) !important;
+  font-size: 1rem !important;
+  padding: 10px 0 !important;
+}
+
+.mat-form-field-underline {
+  display: none !important;
+}
+
+.mat-form-field-ripple {
+  background: var(--primary-gradient) !important;
+}
+
+/* ===== BOTONES PERSONALIZADOS ===== */
+.mat-raised-button,
+.mat-button {
+  border-radius: 25px !important;
+  padding: 12px 30px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  transition: var(--transition) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  margin: 5px !important;
+}
+
+.mat-raised-button:hover,
+.mat-button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--hover-shadow) !important;
+}
+
+.mat-raised-button.mat-primary {
+  background: var(--primary-gradient) !important;
+  color: white !important;
+}
+
+.mat-raised-button.mat-accent {
+  background: var(--success-gradient) !important;
+  color: white !important;
+}
+
+.mat-raised-button.mat-warn {
+  background: var(--secondary-gradient) !important;
+  color: white !important;
+}
+
+/* ===== SELECTORES PERSONALIZADOS ===== */
+.mat-select {
+  color: var(--text-primary) !important;
+  font-weight: 500 !important;
+}
+
+.mat-option {
+  padding: 15px !important;
+  font-weight: 500 !important;
+  transition: var(--transition) !important;
+}
+
+.mat-option:hover {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+}
+
+.mat-option.mat-selected {
+  background: var(--primary-gradient) !important;
+  color: white !important;
+}
+
+/* ===== CONTENIDO DE PASOS ===== */
+.mat-step-content {
+  padding: 30px !important;
+  background: white;
+  margin-top: 0 !important;
+}
+
+/* ===== LAYOUT RESPONSIVE PARA COORDENADAS ===== */
+.coordinates-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.coordinates-row .mat-form-field {
+  flex: 1;
   min-width: 150px;
-  max-width: 500px;
-  width: 100%;
 }
 
-.iniciar {
-  width: 150px;
-  height: 30px;
-  border-radius: 5px;
+/* ===== INDICADOR DE TIEMPO ===== */
+.tiempo-restante {
+  background: var(--dark-gradient);
+  color: rgb(59, 55, 55);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 20px 0;
+  box-shadow: var(--card-shadow);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
-.example-full-width {
-  width: 230px;
-  text-align: justify;
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
+  }
 }
 
-/* Estilo para móviles (pantallas pequeñas) */
+/* ===== BOTONES DE ACCIÓN ===== */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* ===== ESTILOS MÓVILES ESPECÍFICOS ===== */
 @media (max-width: 768px) {
   .container {
-    padding: 20px;
-    font-size: 16px;
+    padding: 15px;
   }
+
+  .container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .mat-stepper-horizontal {
+    margin-bottom: 15px;
+  }
+
+  .mat-step-header {
+    padding: 15px !important;
+  }
+
+  .mat-step-content {
+    padding: 20px !important;
+  }
+
+  .coordinates-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mat-form-field {
+    margin-bottom: 15px !important;
+  }
+
+  .mat-raised-button,
+  .mat-button {
+    padding: 10px 20px !important;
+    font-size: 0.9rem !important;
+    width: 100%;
+    margin: 5px 0 !important;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tiempo-restante {
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .mat-step-label {
+    font-size: 1rem !important;
+  }
+
+  .mat-form-field {
+    margin-bottom: 12px !important;
+  }
+
+  .mat-step-content {
+    padding: 15px !important;
+  }
+}
+
+/* ===== ANIMACIONES DE ENTRADA ===== */
+.mat-step-content {
+  animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== EFECTOS ADICIONALES ===== */
+.mat-form-field-appearance-fill .mat-form-field-flex:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+}
+
+.mat-step-header.mat-step-header-active {
+  background: var(--primary-gradient) !important;
+  color: white !important;
+}
+
+.mat-step-header.mat-step-header-active .mat-step-label {
+  color: white !important;
+}
+
+/* ===== MEJORAS PARA ACCESIBILIDAD ===== */
+.mat-button:focus,
+.mat-raised-button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex:focus-within {
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
 }

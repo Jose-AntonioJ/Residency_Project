@@ -10,7 +10,12 @@ export interface MovimientoDTO {
     flujo: number;
     cobertura: number;
 
-    //tiempo
-    duracion: number;
+    //capas de recubrimiento
     pasadas: number;
+}
+
+
+export interface ControlTiempoDTO {
+    duracion: number;
+    accion: string;
 }

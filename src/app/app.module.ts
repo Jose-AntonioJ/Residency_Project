@@ -9,12 +9,16 @@ import { MatCardModule } from '@angular/material/card';   // si usas <mat-card>
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Home } from './home/home';
 import { CartesianPlane } from './cartesian-plane/cartesian-plane';
 import { NotifyComponent} from './helpers/notify/notify.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { NotifyComponent} from './helpers/notify/notify.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     NgChartsModule,
+    MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
@@ -36,6 +42,7 @@ import { NotifyComponent} from './helpers/notify/notify.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
