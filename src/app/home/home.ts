@@ -7,6 +7,7 @@ import { ControlTiempoDTO, MovimientoDTO } from '../modelos/moviments';
 import { ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { MatStepper } from '@angular/material/stepper';
+import { CartesianPlane } from '../cartesian-plane/cartesian-plane';
 
 
 interface Velocidad {
@@ -32,6 +33,7 @@ interface Capas {
 })
 export class Home implements OnDestroy {
   @ViewChild('stepper') stepper!: MatStepper;
+  @ViewChild('plano') plano!: CartesianPlane;
 
   private formBuilder = inject(FormBuilder);
   private ngZone = inject(NgZone);
@@ -45,6 +47,8 @@ export class Home implements OnDestroy {
   enPausa = false;
   tiempodeEjecucion = false;
   trayectoriaEnviada = false;
+  tiempoPasada: number = 0;
+  tiempoTotal: number = 0;
 
   firstFormGroup = this.formBuilder.group({
     ejeInicioX: ['', Validators.required],
@@ -62,10 +66,11 @@ export class Home implements OnDestroy {
 
   threeFormGroup = this.formBuilder.group({
     pasadas: [null, Validators.required],
-    duracion: [null, Validators.required],
+
   });
 
   fourFormGroup = this.formBuilder.group({
+    duracion: [null, Validators.required],
     accion: ['', Validators.required],
   });
 
@@ -190,16 +195,33 @@ export class Home implements OnDestroy {
     this.aspersionService.trayectoria(dto).subscribe({
       next: (response) => {
         console.log('Trayectoria enviada con éxito:', response);
+
+        this.tiempoPasada = response.tiempoEstimadoPasadaMin;
+        this.tiempoTotal = response.tiempoEstimadoTotalMin;
+
+        console.log('Tiempo por pasada:', this.tiempoPasada.toFixed(2));
+        console.log('Tiempo total:', this.tiempoTotal.toFixed(2));
+
         Swal.fire({
           icon: 'success',
           title: 'Good job!',
-          text: 'Trayectoria enviada con éxito.',
+          text: `Trayectoria enviada con éxito.
+             Tiempo por pasada: ${this.tiempoPasada.toFixed(2)} min
+             Tiempo total: ${this.tiempoTotal.toFixed(2)} min`,
           confirmButtonText: 'OK'
         });
+
         this.ngZone.run(() => {
           this.trayectoriaEnviada = true;
           this.stepper.next();
         });
+
+        const plano = document.querySelector('app-cartesian-plane') as any;
+        // luego en enviarTrayectoria:
+        if (this.plano) {
+          this.plano.ejecutarSimulacion(dto);
+        }
+
       },
       error: (error) => {
         console.error('Error al enviar la trayectoria:', error);
@@ -216,7 +238,7 @@ export class Home implements OnDestroy {
 
   controlarTirmpo() {
     const dto: ControlTiempoDTO = {
-      duracion: this.threeFormGroup.value.duracion!,
+      duracion: this.fourFormGroup.value.duracion!,
       accion: this.fourFormGroup.value.accion!,
     };
 

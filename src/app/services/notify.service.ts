@@ -6,6 +6,7 @@ import { NotifyComponent } from "../helpers/notify/notify.component";
     providedIn: 'root' 
 })
 export class NotifyService {
+    
     constructor(private snackBar: MatSnackBar){}
 
     successFull(text: string) {

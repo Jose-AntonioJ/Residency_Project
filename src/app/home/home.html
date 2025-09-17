@@ -1,4 +1,5 @@
 <!-- Versión actualizada del HTML con clases mejoradas -->
+
 <div class="container">
     <h1 style="background-color: black;">ASPERSOR</h1>
 
@@ -104,12 +105,7 @@
             <form [formGroup]="threeFormGroup">
                 <ng-template matStepLabel>Configuración</ng-template>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Tiempo de riego (minutos)</mat-label>
-                    <input matInput type="number" min="1" formControlName="duracion" [(ngModel)]="selecciondeMinutos"
-                        required>
-                    <mat-icon matSuffix>schedule</mat-icon>
-                </mat-form-field>
+
 
                 <div></div>
 
@@ -142,6 +138,18 @@
             <form [formGroup]="fourFormGroup">
                 <ng-template matStepLabel>Control</ng-template>
 
+                <div *ngIf="trayectoriaEnviada" class="tiempos">
+                    <p>Tiempo estimado por pasada: {{ tiempoPasada }} min</p>
+                    <p>Tiempo estimado total: {{ tiempoTotal }} min</p>
+                </div>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Tiempo de riego (minutos)</mat-label>
+                    <input matInput type="number" min="1" formControlName="duracion" [(ngModel)]="selecciondeMinutos"
+                        required>
+                    <mat-icon matSuffix>schedule</mat-icon>
+                </mat-form-field>
+
                 <div class="action-buttons">
                     <button mat-raised-button color="accent" (click)="iniciarAspersion()">
                         <mat-icon>play_arrow</mat-icon>
@@ -167,5 +175,6 @@
         Tiempo restante: {{ tiempoFormateado }}
     </div>
 
-    <app-cartesian-plane></app-cartesian-plane>
+    <app-cartesian-plane #plano></app-cartesian-plane>
+
 </div>

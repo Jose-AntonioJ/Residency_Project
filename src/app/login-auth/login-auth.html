@@ -1,0 +1,29 @@
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Usuario:</label>
+      <input type="text" formControlName="usuario" placeholder="Ingresa tu usuario" />
+    </div>
+    
+    <div class="password-container">
+      <label>Contraseña:</label>
+      <input 
+        [type]="showPassword ? 'text' : 'password'" 
+        formControlName="password" 
+        placeholder="Ingresa tu contraseña" 
+      />
+      <button 
+        type="button" 
+        class="password-toggle" 
+        (click)="togglePassword()"
+      >
+        {{ showPassword ? '🙈' : '🙉' }}
+      </button>
+    </div>
+    
+    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+  
+  <p [class]="mensajeClase">{{ mensaje }}</p>
+</div>

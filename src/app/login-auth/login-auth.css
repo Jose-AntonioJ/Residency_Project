@@ -1,0 +1,283 @@
+/* Estilos principales del contenedor de login */
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #cadfff 0%, #9babc4 100%);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Efecto de fondo animado */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Título principal */
+.login-container h2 {
+  text-align: center;
+  color: #000000;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+/* Formulario */
+.login-container form {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Contenedores de campos */
+.login-container form > div {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Etiquetas */
+.login-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Campos de entrada */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Contenedor para el campo de contraseña con botón de visualización */
+.password-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6edaf8;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.password-toggle:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Botón principal */
+.login-container button[type="submit"] {
+  width: 100%;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #87f0e5 0%, #4ba29f 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.login-container button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.login-container button[type="submit"]:active {
+  transform: translateY(-1px);
+}
+
+/* Efecto de ondas en el botón */
+.login-container button[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.login-container button[type="submit"]:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Mensaje de estado */
+.login-container p {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* Estados de mensaje */
+.mensaje-error {
+  background: rgba(220, 53, 69, 0.9) !important;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.mensaje-exito {
+  background: rgba(40, 167, 69, 0.9) !important;
+  border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-container {
+    margin: 1rem;
+    padding: 1.5rem;
+    max-width: none;
+    min-height: calc(100vh - 2rem);
+    border-radius: 15px;
+  }
+  
+  .login-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-container form {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .login-container h2 {
+    font-size: 1.8rem;
+  }
+  
+  .login-container form {
+    padding: 1.5rem 1rem;
+  }
+  
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    padding: 0.9rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .login-container button[type="submit"] {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-container {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.login-container form > div {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.login-container form > div:nth-child(1) { animation-delay: 0.1s; }
+.login-container form > div:nth-child(2) { animation-delay: 0.2s; }
+.login-container button { animation-delay: 0.3s; }
+
+/* Efectos adicionales para mejor UX */
+.login-container input:invalid {
+  border-color: #dc3545;
+}
+
+.login-container input:valid {
+  border-color: #28afab;
+}
+
+/* Loading state para el botón */
+.login-container button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-container button[type="submit"]:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}

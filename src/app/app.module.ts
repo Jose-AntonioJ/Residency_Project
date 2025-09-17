@@ -18,6 +18,7 @@ import { CartesianPlane } from './cartesian-plane/cartesian-plane';
 import { NotifyComponent} from './helpers/notify/notify.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { LoginAuth } from './login-auth/login-auth';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     App,
     Home,
     CartesianPlane,
-    NotifyComponent
+    NotifyComponent,
+    LoginAuth
   ],
   imports: [
     BrowserModule,
